@@ -10,7 +10,7 @@ Does not cover:
 
 Build using Maven: e.g., mvn clean install
 
-Maven coordinates:
+Maven coordinate:
 ```
 <dependency>
   <groupId>dlog</groupId>
