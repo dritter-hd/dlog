@@ -38,7 +38,7 @@ If you find this work useful for your research, please cite (for which the libra
 }
 ```
 
-and later used on Android as well:
+and when used on Android:
 ```
 @unknown{unknown,
   author = {Ritter, Daniel and Holzleitner, Manuel},
