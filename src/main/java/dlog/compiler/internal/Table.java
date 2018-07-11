@@ -1,0 +1,41 @@
+package dlog.compiler.internal;
+
+import java.util.Collections;
+import java.util.List;
+
+import dlog.Literal;
+import dlog.Parameter;
+import dlog.Predicate;
+
+public class Table extends AbstractOperator {
+    private Literal edbLiteral;
+
+    public Table(final Literal literal) {
+        this.edbLiteral = literal;
+    }
+
+    @Override
+    public final List<Operator> getChildren() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public final List<Parameter<?>> getFreeVariables() {
+        return this.edbLiteral.getParameters();
+    }
+
+    public final Predicate getPredicate() {
+        return this.edbLiteral.getPredicate();
+    }
+
+    @Override
+    public final int getArity() {
+        return this.edbLiteral.getPredicate().getArity();
+    }
+
+    @Override
+    void appendMembers(StringBuilder sb, int indent) {
+        indent(sb, indent);
+        sb.append(edbLiteral.toString()).append('\n');
+    }
+}
