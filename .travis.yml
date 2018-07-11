@@ -1,0 +1,2 @@
+language: java
+script: "mvn -f pom.xml clean install -DskipTests=true"
