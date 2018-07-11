@@ -1,6 +1,6 @@
 # Datalog for Java
 
-Maybe the smallest recursive Datalog system available in Java.
+Maybe the smallest recursive Datalog system available in Java. The module is OSGi-enabled and compatible with Android OS down to API level 7.
 
 Does not cover:
 - stratificatation, negation
