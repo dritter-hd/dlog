@@ -6,6 +6,19 @@ Does not cover:
 - stratificatation, negation
 - magic sets or any other advanced improvements
 
+# Usage
+
+Build using Maven: e.g., mvn clean install
+
+Maven coordinates:
+```
+<dependency>
+  <groupId>dlog</groupId>
+  <artifactId>dlog</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
 ## License
 
 Apache 2.0 license [here](https://github.com/dritter-hd/dlog/blob/master/LICENSE)
