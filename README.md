@@ -36,8 +36,10 @@ If you find this work useful for your research, please cite (for which the libra
   pages     = {148--152},
   year      = {2012}
 }
+```
 
 and later used on Android as well:
+```
 @unknown{unknown,
   author = {Ritter, Daniel and Holzleitner, Manuel},
   year = {2018},
