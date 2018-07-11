@@ -1,4 +1,4 @@
-# Datalog for Java
+# Datalog for Java [![Build Status](https://travis-ci.org/dritter-hd/dlog.svg?branch=master)](https://travis-ci.org/dritter-hd/dlog)
 
 Maybe the smallest recursive Datalog system available in Java. The module is OSGi-enabled and compatible with Android OS down to API level 7.
 
