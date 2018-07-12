@@ -19,6 +19,23 @@ Maven coordinate:
 </dependency>
 ```
 
+The following program code illustrates the usage of the parser and evaluator. Considering a datalog program, the parser allows to differentiate facts and rules, which are then used to parameterize one of the evaluators (e.g., rules -> NaiveRecursiveEvaluator) and then evaluate the rules for the facts or edbRelations. 
+
+```
+  final String program = "tc(X,Y) :- edge(X,Y)." + "tc(X,Y) :- edge(X,Z), tc(Z,Y)." + "edge(\"a\",\"b\")." + "edge(\"b\",\"c\")."
+				+ "edge(\"c\",\"b\")." + "edge(\"c\",\"d\").";
+
+	final DlogParser parser = new DlogParser();
+	parser.parse(program);
+
+	final List<IRule> rules = parser.getRules();
+
+	final Collection<IFacts> edbRelations = parser.getFacts();
+
+	final IEvaluator evaluator = new NaiveRecursiveEvaluator(rules);
+	final Collection<IFacts> idbRelations = evaluator.eval(edbRelations);
+```
+
 ## License
 
 Apache 2.0 license [here](https://github.com/dritter-hd/dlog/blob/master/LICENSE)
