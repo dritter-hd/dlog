@@ -35,6 +35,31 @@ The following program code illustrates the usage of the parser and evaluator. Co
   final Collection<IFacts> idbRelations = evaluator.eval(edbRelations);
 ```
 
+The log output will print the actual datalog plan that is executed, which helps to understand, how the rules are evaluated. For the example datalog program, the following plan is constructed:
+
+```
+UnionAll {
+  Projection {
+    0 1 
+    Table {
+      edge(_tc0, _tc1)
+    }
+  }
+  Projection {
+    0 3 
+    Join {
+      Z_1 = Z_2 
+      Table {
+        edge(_tc0, Z_1)
+      }
+      Table {
+        tc(Z_2, _tc1)
+      }
+    }
+  }
+}
+```
+
 ## License
 
 Apache 2.0 license [here](https://github.com/dritter-hd/dlog/blob/master/LICENSE)
