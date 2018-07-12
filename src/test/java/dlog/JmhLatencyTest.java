@@ -1,15 +1,6 @@
 package dlog;
 
 import dlog.evaluator.DlogEvaluator;
-import org.deri.iris.*;
-import org.deri.iris.api.IKnowledgeBase;
-import org.deri.iris.api.basics.IPredicate;
-import org.deri.iris.api.basics.IQuery;
-import org.deri.iris.api.basics.IRule;
-import org.deri.iris.api.terms.IVariable;
-import org.deri.iris.compiler.Parser;
-import org.deri.iris.compiler.ParserException;
-import org.deri.iris.storage.IRelation;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.logic.results.Result;
 import org.openjdk.jmh.logic.results.RunResult;
@@ -20,7 +11,6 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -59,7 +49,7 @@ public class JmhLatencyTest {
     }
 
     private DlogEvaluator hlogEval = DlogEvaluator.create();
-    private Parser irisParser = new Parser();
+    // private Parser irisParser = new Parser();
 
     @Setup
     public void setup() {
@@ -67,41 +57,41 @@ public class JmhLatencyTest {
         // final String facts = FACT_DATA_SETS.get(counter).getFacts();
         this.hlogEval.initalize(facts, TC_RULE);
 
-        this.initializeIrisParser(facts);
+//        this.initializeIrisParser(facts);
     }
 
-    private void initializeIrisParser(final String facts) {
-        try {
-            this.irisParser.parse(IRIS_RULE + " "
-                    + facts.replaceAll("\"", "'") + " " + "?-tc(?X, ?Y).");
-        } catch (final ParserException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void initializeIrisParser(final String facts) {
+//        try {
+//            this.irisParser.parse(IRIS_RULE + " "
+//                    + facts.replaceAll("\"", "'") + " " + "?-tc(?X, ?Y).");
+//        } catch (final ParserException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
-    @GenerateMicroBenchmark
-    public void testRule_complete() {
-        try {
-            // Iris starts with the evaluation, when facts are added
-            final List<IRule> irisRules = irisParser.getRules();
-            final Map<IPredicate, IRelation> irisFacts = irisParser
-                    .getFacts();
-            final Configuration irisConfiguration = new Configuration();
-            final IKnowledgeBase irisEval = KnowledgeBaseFactory.createKnowledgeBase(
-                    irisFacts, irisRules, irisConfiguration);
-
-            final List<IVariable> variableBindings = new ArrayList<IVariable>();
-            final IQuery irisQuery = irisParser.getQueries().get(0);
-            irisEval.execute(irisQuery, variableBindings);
-        } catch (ProgramNotStratifiedException e) {
-            e.printStackTrace();
-        } catch (RuleUnsafeException e) {
-            e.printStackTrace();
-        } catch (EvaluationException e) {
-            e.printStackTrace();
-        }
-    }
+//    @GenerateMicroBenchmark
+//    public void testRule_iris() {
+//        try {
+//            // Iris starts with the evaluation, when facts are added
+//            final List<IRule> irisRules = irisParser.getRules();
+//            final Map<IPredicate, IRelation> irisFacts = irisParser
+//                    .getFacts();
+//            final Configuration irisConfiguration = new Configuration();
+//            final IKnowledgeBase irisEval = KnowledgeBaseFactory.createKnowledgeBase(
+//                    irisFacts, irisRules, irisConfiguration);
+//
+//            final List<IVariable> variableBindings = new ArrayList<IVariable>();
+//            final IQuery irisQuery = irisParser.getQueries().get(0);
+//            irisEval.execute(irisQuery, variableBindings);
+//        } catch (ProgramNotStratifiedException e) {
+//            e.printStackTrace();
+//        } catch (RuleUnsafeException e) {
+//            e.printStackTrace();
+//        } catch (EvaluationException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @GenerateMicroBenchmark
     public void test_dlogEval() {

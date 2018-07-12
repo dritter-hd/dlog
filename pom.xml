@@ -51,7 +51,7 @@
         </dependency>
 
         <!-- evaluator -->
-        <dependency>
+        <!--<dependency>
             <groupId>deri.iris</groupId>
             <artifactId>deri.iris</artifactId>
             <version>0.6.0</version>
@@ -71,9 +71,9 @@
             <version>0.6.0</version>
             <scope>system</scope>
             <systemPath>${basedir}/libs/iris-parser-0.60.jar</systemPath>
-        </dependency>
+        </dependency>-->
 
-        <dependency>
+        <!--<dependency>
             <groupId>gral-core</groupId>
             <artifactId>gral-core</artifactId>
             <version>0.9.0</version>
@@ -100,7 +100,7 @@
             <version>1.0.16</version>
             <scope>system</scope>
             <systemPath>${basedir}/libs/jcommon-1.0.16.jar</systemPath>
-        </dependency>
+        </dependency>-->
 
         <!-- logging -->
         <dependency>
