@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.felix.scr.annotations.Component;
-
 import dlog.Facts;
 import dlog.IRule;
 import dlog.NaiveRecursiveEvaluator;
@@ -18,7 +16,6 @@ import dlog.algebra.FillableTableIterator;
 import dlog.algebra.ParameterValue;
 import dlog.parser.DlogParser;
 
-@Component(factory = "com.sap.helix.consolidation.evaluator.hlog")
 public class DlogEvaluator implements IEvaluator {
     // private static final Logger log =
     // LoggerFactory.getLogger(DlogEvaluator.class);
