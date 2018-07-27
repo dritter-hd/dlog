@@ -1,2 +1,15 @@
 language: java
-script: "mvn -f pom.xml clean install"
+script: mvn -f pom.xml clean install -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+before_deploy:
+- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep
+  -v '\[')
+deploy:
+  provider: releases
+  api_key:
+    secure: if77lxucHaogiYmlZeRzPsNSH697Fyts78TuiBvSpUR0phVyBjw/lnheoFAPuVmy+DHelY1pOmNdX6H5zI7IqLwkiCc85XN7u0kc+XdJOdml/NC8mmuBQ+tUGIb14hD1voH4sSO8VEBvA7AaeTCFHp/3kYPK6KFjhW70eAMSHxr5eukBaOQsYRBlFYh/HC7wBSCnRcL3RNXZZcOf1FUTEifGpIMeWTMEaKloCAqZXXv8PhILChNxTdIOlhpom0Wt13dXux0i6D5Y9glnePEehRTOtAXI1W/Y9V9XRdmBjsNGf1qELynppZZtwz0L98UQ5F3gryLVxXYXyv0jgRs9KfI/Lsw0MsYzXnlyuYBex8HmYId9PHkuI8E74ey8gATixe67ogdC3d/mqCF96hrlseAZLY9egwarEB3ccJx9Qy7+8CCu5QQUZGd/PL2ehtvhyXlPQNqSlLUOe+R8gU0e5FrT0ohGII+Cs1zxwnItBStBAfqEmau5RjRgo/X4J5kYCjjyQz+ovUpp0strAZpJRPJk4ML7uVw8bvPvj2P5t0695sFpQmTyZqk8a2INlJ6DkKDq/vvlwkJF85mTcYGhvx1fAKKpkBlihEshkBqrHTywgEf3wfG6ptVY5165y+/6eGHti7j2yD2oxOXE+Di2tuKh/Pei2+f7BoxR1Ebjv9A=
+  file: dlog/target/dlog-$project_version.jar
+  skip_cleanup: true
+  on:
+    repo: dritter-hd/dlog
+  name: $project_version
