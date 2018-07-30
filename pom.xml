@@ -156,7 +156,7 @@
     </dependencies>
 
     <profiles>
-        <!-- Activate using the release property: mvn clean install -Prelease -->
+        <!-- Release profile: mvn clean install -Prelease -->
         <profile>
             <id>release</id>
             <activation>
@@ -179,7 +179,7 @@
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
-                    <!-- To generate javadoc -->
+                    <!-- Javadoc -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
@@ -193,7 +193,7 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
+                    <!--<plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>2.10.4</version>
@@ -205,9 +205,9 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
+                    </plugin>-->
 
-                    <!-- To sign the artifacts -->
+                    <!-- Signing -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -223,7 +223,6 @@
                         </executions>
                     </plugin>
                 </plugins>
-
             </build>
         </profile>
     </profiles>
@@ -306,8 +305,8 @@
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <source>1.6</source>
-                        <target>1.6</target>
+                        <source>1.7</source>
+                        <target>1.7</target>
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                 </plugin>

@@ -1,9 +1,23 @@
 language: java
-script: mvn -f pom.xml clean install -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+
+## export GPG details
+before_install:
+    - echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
+    - echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
+
+install:
+    mvn --settings .maven.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+
+## Build and release to maven central
+script:
+    mvn clean deploy --settings .maven.xml -DskipTests=true -B -U -Prelease
+
+## Get the project version
 before_deploy:
-- mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
-- export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep
-  -v '\[')
+    - mvn help:evaluate -N -Dexpression=project.version|grep -v '\['
+    - export project_version=$(mvn help:evaluate -N -Dexpression=project.version|grep -v '\[')
+
+## Create release in GitHub
 deploy:
   provider: releases
   api_key:
@@ -13,3 +27,7 @@ deploy:
   on:
     repo: dritter-hd/dlog
   name: $project_version
+
+cache:
+    directories:
+        - ~/.m2/repository
