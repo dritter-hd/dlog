@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dlog</groupId>
+    <groupId>com.github.dritter-hd</groupId>
     <artifactId>dlog</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -18,8 +18,20 @@
     </licenses>
 
     <scm>
-        <url>https://svn.apache.org/viewvc/maven</url>
+        <connection>scm:git:https://github.com/dritter-hd/dlog.git</connection>
+        <url>https://github.com/dritter-hd/dlog</url>
     </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
