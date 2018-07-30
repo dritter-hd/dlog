@@ -9,7 +9,7 @@ public final class RuleSafetyProcessor implements RuleSafety {
     /**
      * process rule safety.
      * 
-     * @param IRule
+     * @param rule
      * @return IRule
      */
     public IRule process(final IRule rule) {

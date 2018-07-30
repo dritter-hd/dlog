@@ -8,7 +8,7 @@ public interface INormalization {
     /**
      * 
      * @param rules
-     * @return
+     * @return Collection<IRule>
      */
     Collection<IRule> rectify(Collection<IRule> rules);
 }
