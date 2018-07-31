@@ -13,7 +13,7 @@ Build using [Maven](https://maven.apache.org/): e.g., mvn clean install
 Maven coordinate:
 ```
 <dependency>
-  <groupId>dlog</groupId>
+  <groupId>com.github.dritter-hd</groupId>
   <artifactId>dlog</artifactId>
   <version>1.0.0</version>
 </dependency>
