@@ -81,12 +81,12 @@ If you find this work useful for your research, please cite (for which the libra
 
 or when used on Android:
 ```
-@unknown{unknown,
-  author = {Ritter, Daniel and Holzleitner, Manuel},
-  year = {2018},
-  month = {01},
-  pages = {278-291},
-  title = {Toward Resilient Mobile Integration Processes},
-  isbn = {978-3-319-93930-8}
+@inproceedings{ritter2018toward,
+    title={Toward Resilient Mobile Integration Processes},
+    author={Ritter, Daniel and Holzleitner, Manuel},
+    booktitle={International Conference on Business Information Systems},
+    pages={278--291},
+    year={2018},
+    organization={Springer}
 }
 ```
