@@ -68,14 +68,13 @@ Apache 2.0 license [here](https://github.com/dritter-hd/dlog/blob/master/LICENSE
 
 If you find this work useful for your research, please cite (for which the library was initially developed):
 ```
-@inproceedings{DBLP:conf/datalog/RitterW12,
-  author    = {Daniel Ritter and
-               Till Westmann},
-  title     = {Business Network Reconstruction Using Datalog},
-  booktitle = {Datalog in Academia and Industry - Second International Workshop,
-               Datalog 2.0, Vienna, Austria, September 11-13, 2012. Proceedings},
-  pages     = {148--152},
-  year      = {2012}
+@incollection{ritter2012business,
+  title={Business network reconstruction using datalog},
+  author={Ritter, Daniel and Westmann, Till},
+  booktitle={Datalog in Academia and Industry},
+  pages={148--152},
+  year={2012},
+  publisher={Springer}
 }
 ```
 
