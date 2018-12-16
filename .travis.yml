@@ -26,6 +26,7 @@ deploy:
   skip_cleanup: true
   on:
     repo: dritter-hd/dlog
+    tags: true
   name: $project_version
 
 cache:
