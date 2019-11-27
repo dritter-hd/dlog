@@ -32,3 +32,6 @@ deploy:
 cache:
     directories:
         - ~/.m2/repository
+
+jdk:
+  - openjdk9
