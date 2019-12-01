@@ -8,7 +8,7 @@ Does not cover:
 
 # Usage
 
-Build using [Maven](https://maven.apache.org/): e.g., mvn clean install
+Build using [Maven](https://maven.apache.org/): e.g., `mvn clean package`
 
 Maven coordinate:
 ```
