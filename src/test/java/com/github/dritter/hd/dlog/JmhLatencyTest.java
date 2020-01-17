@@ -2,21 +2,20 @@ package com.github.dritter.hd.dlog;
 
 import com.github.dritter.hd.dlog.evaluator.DlogEvaluator;
 import org.openjdk.jmh.annotations.*;
-import org.openjdk.jmh.logic.results.Result;
-import org.openjdk.jmh.logic.results.RunResult;
-import org.openjdk.jmh.output.OutputFormatType;
-import org.openjdk.jmh.runner.BenchmarkRecord;
+import org.openjdk.jmh.profile.StackProfiler;
+import org.openjdk.jmh.results.BenchmarkResult;
+import org.openjdk.jmh.results.RunResult;
+import org.openjdk.jmh.results.format.ResultFormatType;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
-import java.util.List;
-import java.util.Map;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
-@State
-@OutputTimeUnit(TimeUnit.MILLISECONDS) @BenchmarkMode(Mode.AverageTime)
+@State(Scope.Benchmark)
+@OutputTimeUnit(TimeUnit.MICROSECONDS) @BenchmarkMode(Mode.AverageTime)
 public class JmhLatencyTest {
     private static final String TC_RULE = "tc(x,y) :- e(x,y). tc(x,y) :- e(x,z), tc(z,y).";
     private static final String IRIS_RULE = "tc(?X,?Y) :- e(?X,?Y). tc(?X,?Y) :- e(?X,?Z), tc(?Z,?Y).";
@@ -26,22 +25,23 @@ public class JmhLatencyTest {
     public static void main(String[] args) {
         final Options opts = new OptionsBuilder()
                 .include(".*")
+                .addProfiler(StackProfiler.class)
                 .warmupIterations(5)
-                .measurementIterations(10)
-                .jvmArgs("-server -XX:+UseConcMarkSweepGC -Xmx1500m -Xms1000m")
-                //.param("offHeapMessages", "true""
+                .measurementIterations(5)
+                .jvmArgs("-server", "-XX:+UseConcMarkSweepGC", "-Xmx1500m", "-Xms1000m")
+                .result("target" + "/" + "results.csv")
                 .forks(3) // 15
-                .outputFormat(OutputFormatType.TextReport)
+                .resultFormat(ResultFormatType.CSV)
                 .build();
 
         try {
-            final Map<BenchmarkRecord, RunResult> records = new Runner(opts).run();
-            for (final Map.Entry<BenchmarkRecord, RunResult> results : records.entrySet()) {
-                final Result result = results.getValue().getPrimaryResult();
+            final Collection<RunResult> result = new Runner(opts).run();
+            for (final RunResult rr : result) {
+                final BenchmarkResult ar = rr.getAggregatedResult();
                 System.out.println("Benchmark score: "
-                        + result.getScore() + " "
-                        + result.getScoreUnit() + " over "
-                        + result.getStatistics().getN() + " iterations");
+                        + ar.getPrimaryResult().getScore() + " "
+                        + ar.getScoreUnit() + " over "
+                        + ar.getPrimaryResult().getStatistics().getN() + " iterations");
             }
         } catch (final RunnerException e) {
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class JmhLatencyTest {
 //    }
 
 
-//    @GenerateMicroBenchmark
+//    @Benchmark
 //    public void testRule_iris() {
 //        try {
 //            // Iris starts with the evaluation, when facts are added
@@ -93,7 +93,7 @@ public class JmhLatencyTest {
 //        }
 //    }
 
-    @GenerateMicroBenchmark
+    @Benchmark
     public void test_dlogEval() {
         this.hlogEval.query("tc", 2);
     }

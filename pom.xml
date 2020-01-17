@@ -76,6 +76,7 @@
         </dependency> -->
 
         <!-- evaluator -->
+        <!-- TODO: add http://rif4j.sourceforge.net/ to benchmark -->
         <!--<dependency>
             <groupId>deri.iris</groupId>
             <artifactId>deri.iris</artifactId>
@@ -160,12 +161,18 @@
             <version>2.5.2</version>
             <scope>test</scope>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
-            <version>0.1</version>
+            <version>1.22</version>
             <scope>test</scope>
-        </dependency>-->
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.22</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <profiles>
